@@ -1,7 +1,8 @@
 using System;
-using TMPro;
+using Systems.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Systems {
     public class TimeController : MonoBehaviour{
@@ -9,16 +10,15 @@ namespace Systems {
         private float m_minTimer;
         private float m_timer;
         
-        [Header("Time")] 
+        [Header("Events"), Line]
         public UnityEvent<int> onNewHour = new UnityEvent<int>();
         public UnityEvent<int> onNewDay = new UnityEvent<int>();
         public UnityEvent<int> onNewMonth = new UnityEvent<int>();
         public UnityEvent<int> onNewYear = new UnityEvent<int>();
-        [SerializeField] private int startYear = 0;
-        [Space]
+        [Header("Time"), Line]
         [SerializeField, Range(0f, 5f)] private float hoursToSeconds = 3f;
-        [Space]
-        [SerializeField] private string currentTime;
+        [SerializeField] private int startYear = 0;
+        [ShowOnly, Label("Current Game Time: ")] public string currentTime;
         
         public static int CurrentMinute { get; private set; }
         public static int CurrentHour { get; private set; }
