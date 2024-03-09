@@ -22,14 +22,16 @@ namespace Systems {
         
         public static int CurrentMinute { get; private set; }
         public static int CurrentHour { get; private set; }
-        public static int CurrentDay { get; private set; }
+        public static int CurrentDayToMonth { get; private set; }
+        public static int CurrentDayToYear { get; private set; }
         public static int CurrentMonth { get; private set; }
         public static int CurrentYear { get; private set; }
 
         private void Start() {
             CurrentMinute = 0;
             CurrentHour = 0;
-            CurrentDay = 0;
+            CurrentDayToMonth = 0;
+            CurrentDayToYear = 0;
             CurrentMonth = 0;
             CurrentYear = startYear;
             m_timer = hoursToSeconds;
@@ -50,18 +52,20 @@ namespace Systems {
                 onNewHour?.Invoke(CurrentHour);
                 //Days
                 if (CurrentHour > 23){
-                    CurrentDay++;
+                    CurrentDayToMonth++;
+                    CurrentDayToYear++;
                     CurrentHour = 0;
-                    onNewDay?.Invoke(CurrentDay);
+                    onNewDay?.Invoke(CurrentDayToMonth);
                     //Months
-                    if (CurrentDay > 29){
+                    if (CurrentDayToMonth > 29){
                         CurrentMonth++;
-                        CurrentDay = 0;
+                        CurrentDayToMonth = 0;
                         onNewMonth?.Invoke(CurrentMonth);
                         //Years
                         if (CurrentMonth > 11){
                             CurrentYear++;
                             CurrentMonth = 0;
+                            CurrentDayToYear = 0;
                             onNewYear?.Invoke(CurrentYear);
                         }
                     }
@@ -69,7 +73,7 @@ namespace Systems {
                 m_timer = hoursToSeconds;
             }
             //Set Current Time Data
-            currentTime = $"{CurrentYear:0000} : {CurrentMonth:00} : {CurrentDay:00} : {CurrentHour:00} : {CurrentMinute:00}";
+            currentTime = $"{CurrentYear:0000}:{CurrentMonth:00}:{CurrentDayToMonth:00}:{CurrentHour:00}:{CurrentMinute:00} -  {CurrentDayToYear:000} ";
         }
 
         private void OnDisable(){
