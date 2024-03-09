@@ -5,7 +5,7 @@
 ![Static Badge](https://img.shields.io/badge/Version-0.0.1a-blue?style=for-the-badge)
 
 > [!CAUTION]
-> This Code is unfinished.
+> This Code is unfinished + Very Slow Progress
 
 ## Project Overview
 Imagine a virtual city that grows and changes with the decisions of its inhabitants. That's what **City Simulation** is all about. It's a realistic and immersive simulation of urban life, where you can watch and interact with smart AI agents that have their own goals and preferences. You can see how they move around, build, trade, and communicate with each other. **City Simulation** is more than just a game. It's a powerful tool for learning about the challenges and opportunities of urban development, such as traffic management, environmental impact, and social equity. Whether you want to play, explore, or experiment, **City Simulation** will give you a new perspective on the city you live in.
