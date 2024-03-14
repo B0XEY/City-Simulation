@@ -6,7 +6,7 @@ namespace Systems.Attributes {
         public readonly float Thickness;
         public Color Color;
 
-        public LineAttribute(float thickness = 1.5f, float r = .5f, float g = .5f, float b = .5f){
+        public LineAttribute(float thickness = 1.25f, float r = .5f, float g = .5f, float b = .5f){
             Thickness = thickness;
             Color = new Color(r, g, b);
         }

@@ -10,13 +10,21 @@ namespace Systems {
         private float m_minTimer;
         private float m_timer;
         
+        private const float HoursToSeconds = 3f;
+        private enum SpeedMultiplier {
+            Normal = 1,
+            Swift = 4,
+            Rapid = 9,
+            Fast = 16
+        }
+        
         [Header("Events"), Line]
         public UnityEvent<int> onNewHour = new UnityEvent<int>();
         public UnityEvent<int> onNewDay = new UnityEvent<int>();
         public UnityEvent<int> onNewMonth = new UnityEvent<int>();
         public UnityEvent<int> onNewYear = new UnityEvent<int>();
         [Header("Time"), Line]
-        [SerializeField, Range(0f, 5f)] private float hoursToSeconds = 3f;
+        [SerializeField, ToggleButtons] private SpeedMultiplier speedMultiplier = SpeedMultiplier.Normal;
         [SerializeField] private int startYear = 0;
         [ShowOnly, Label("Current Game Time: ")] public string currentTime;
         
@@ -34,17 +42,17 @@ namespace Systems {
             CurrentDayToYear = 0;
             CurrentMonth = 0;
             CurrentYear = startYear;
-            m_timer = hoursToSeconds;
-            m_minTimer = hoursToSeconds / 60;
+            m_timer = HoursToSeconds;
+            m_minTimer = HoursToSeconds / 60;
         }
         private void Update(){
-            m_minTimer -= Time.deltaTime;
+            m_minTimer -= Time.deltaTime * (int)speedMultiplier;
             //Min
             if (m_minTimer < 0){
                 CurrentMinute++;
-                m_minTimer = hoursToSeconds / 60;
+                m_minTimer = HoursToSeconds / 60;
             }
-            m_timer -= Time.deltaTime;
+            m_timer -= Time.deltaTime * (int)speedMultiplier;
             //Hours
             if (m_timer <= 0){
                 CurrentHour++;
@@ -70,7 +78,7 @@ namespace Systems {
                         }
                     }
                 }
-                m_timer = hoursToSeconds;
+                m_timer = HoursToSeconds;
             }
             //Set Current Time Data
             currentTime = $"{CurrentYear:0000}:{CurrentMonth:00}:{CurrentDayToMonth:00}:{CurrentHour:00}:{CurrentMinute:00} -  {CurrentDayToYear:000} ";

@@ -258,8 +258,8 @@ MonoBehaviour:
   onNewYear:
     m_PersistentCalls:
       m_Calls: []
+  speedMultiplier: 1
   startYear: 0
-  hoursToSeconds: 1.2
   currentTime: 
 --- !u!4 &730431846
 Transform:
