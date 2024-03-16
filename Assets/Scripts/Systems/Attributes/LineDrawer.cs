@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     public class LineAttribute : PropertyAttribute {
         public readonly float Thickness;
         public Color Color;
@@ -38,4 +39,5 @@ namespace Systems.Attributes {
             GUI.color = savedColor;
         }
     }
+#endif
 }

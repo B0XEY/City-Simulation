@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     public class LabelAttribute : PropertyAttribute{
         public readonly string CustomLabel;
         public LabelAttribute(string customLabel = ""){
@@ -21,4 +22,5 @@ namespace Systems.Attributes {
             EditorGUI.EndProperty();
         }
     }
+#endif
 }

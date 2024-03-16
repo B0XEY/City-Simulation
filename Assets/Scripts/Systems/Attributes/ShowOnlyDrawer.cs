@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     public class ShowOnlyAttribute : PropertyAttribute{ }
     [CustomPropertyDrawer(typeof(ShowOnlyAttribute))]
     public class ShowOnlyDrawer : PropertyDrawer{
@@ -11,4 +12,5 @@ namespace Systems.Attributes {
             EditorGUI.EndDisabledGroup();
         }
     }
+#endif
 }

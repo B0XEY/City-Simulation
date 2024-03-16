@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     public class EnumButtonsAttribute : PropertyAttribute { }
     [CustomPropertyDrawer(typeof(EnumButtonsAttribute))]
     public class EnumButtonDrawer : PropertyDrawer{
@@ -26,4 +27,5 @@ namespace Systems.Attributes {
             EditorGUI.EndProperty();
         }
     }
+#endif
 }

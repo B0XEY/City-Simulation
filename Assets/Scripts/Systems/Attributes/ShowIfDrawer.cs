@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
     public class ShowIfAttribute : PropertyAttribute{
         public readonly string BoolName;
@@ -35,4 +36,5 @@ namespace Systems.Attributes {
             }
         }
     }
+#endif
 }

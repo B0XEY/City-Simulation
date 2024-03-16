@@ -17,15 +17,21 @@ namespace Systems {
             Fast = 100
         }
         
-        [Header("Events"), Line]
-        public UnityEvent<int> onNewHour = new UnityEvent<int>();
-        public UnityEvent<int, int> onNewDay = new UnityEvent<int, int>();
-        public UnityEvent<int> onNewMonth = new UnityEvent<int>();
-        public UnityEvent<int> onNewYear = new UnityEvent<int>();
-        [Header("Time"), Line]
-        [SerializeField, ToggleButtons] private SpeedMultiplier speedMultiplier = SpeedMultiplier.Normal;
+        //[Header("Events"), Line]
+        [HideInInspector] public UnityEvent<int> onNewHour = new UnityEvent<int>();
+        [HideInInspector] public UnityEvent<int, int> onNewDay = new UnityEvent<int, int>();
+        [HideInInspector] public UnityEvent<int> onNewMonth = new UnityEvent<int>();
+        [HideInInspector] public UnityEvent<int> onNewYear = new UnityEvent<int>();
+#if UNITY_EDITOR
+        [Header("Time Settings"), Line]
+        [SerializeField, ToggleButtons] 
+#endif
+        private SpeedMultiplier speedMultiplier = SpeedMultiplier.Normal;
         [SerializeField] private int startYear = 0;
-        [ShowOnly, Label("Current Game Time: ")] public string currentTime;
+#if UNITY_EDITOR
+        [ShowOnly, Label("Current Game Time: ")] 
+#endif
+        public string currentTime;
         
         public int CurrentMinute { get; private set; }
         public int CurrentHour { get; private set; }

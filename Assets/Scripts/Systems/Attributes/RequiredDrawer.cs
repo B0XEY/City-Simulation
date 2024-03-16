@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     public class RequiredAttribute : PropertyAttribute { }
     [CustomPropertyDrawer(typeof(RequiredAttribute))]
     public class RequiredDrawer : PropertyDrawer{
@@ -21,4 +22,5 @@ namespace Systems.Attributes {
             EditorGUI.EndProperty();
         }
     }
+#endif
 }

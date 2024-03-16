@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     public class ToggleButtonsAttribute : PropertyAttribute {
         
     }
@@ -48,4 +49,5 @@ namespace Systems.Attributes {
         }
         
     }
+#endif
 }

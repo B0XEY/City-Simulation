@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Systems.Attributes {
+#if UNITY_EDITOR
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
     public class OnChangedAttribute : PropertyAttribute{
         public readonly string MethodName;
@@ -28,4 +29,5 @@ namespace Systems.Attributes {
             }
         }
     }
+#endif
 }
