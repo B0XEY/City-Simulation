@@ -2,7 +2,7 @@
 ![City](https://github.com/B0XEY/City-Simulation/assets/94720404/97399a77-2834-4161-8619-7c7cbcc9e9e3)
 
 ![Static Badge](https://img.shields.io/badge/Verson-2022.3.15f1-5300EB?style=for-the-badge&logo=Unity)
-![Static Badge](https://img.shields.io/badge/Version-0.0.1a-blue?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Version-uhhhh-blue?style=for-the-badge)
 
 > [!CAUTION]
 > This Code is unfinished + Very Slow Progress
