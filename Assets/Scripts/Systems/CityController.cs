@@ -23,15 +23,6 @@ namespace Systems {
 
         
         private List<CitizenData> m_currentCitizens = new List<CitizenData>();
-#if UNITY_EDITOR
-        [Button]
-#endif
-        private void CreateCitizen() {
-            var newCitizen = new CitizenData(this, "John Doe", "1234 car St", 0, time.CurrentDayToYear, healthOverTime);
-            m_currentCitizens.Add(newCitizen);
-            time.onNewDay.AddListener(newCitizen.OnNewDay);
-            citizenCount = m_currentCitizens.Count;
-        }
         
         [Command]
         private void CreateCitizen(int amount) {

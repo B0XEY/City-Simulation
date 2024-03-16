@@ -1,4 +1,5 @@
 using System;
+using QFSW.QC;
 using Systems.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
@@ -101,5 +102,10 @@ namespace Systems {
 
             GUI.Label(new Rect(10, 10, 100, 20), currentTime, m_customStyle);
         }
+
+
+        [Command]
+        private void ChangeSpeed(SpeedMultiplier newValue) => speedMultiplier = newValue;
+        
     }
 }
