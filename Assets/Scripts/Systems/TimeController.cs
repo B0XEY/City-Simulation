@@ -2,7 +2,6 @@ using System;
 using Systems.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Systems {
     public class TimeController : MonoBehaviour{
@@ -13,14 +12,14 @@ namespace Systems {
         private const float HoursToSeconds = 3f;
         private enum SpeedMultiplier {
             Normal = 1,
-            Swift = 4,
-            Rapid = 9,
-            Fast = 16
+            Swift = 10,
+            Rapid = 45,
+            Fast = 100
         }
         
         [Header("Events"), Line]
         public UnityEvent<int> onNewHour = new UnityEvent<int>();
-        public UnityEvent<int> onNewDay = new UnityEvent<int>();
+        public UnityEvent<int, int> onNewDay = new UnityEvent<int, int>();
         public UnityEvent<int> onNewMonth = new UnityEvent<int>();
         public UnityEvent<int> onNewYear = new UnityEvent<int>();
         [Header("Time"), Line]
@@ -28,12 +27,12 @@ namespace Systems {
         [SerializeField] private int startYear = 0;
         [ShowOnly, Label("Current Game Time: ")] public string currentTime;
         
-        public static int CurrentMinute { get; private set; }
-        public static int CurrentHour { get; private set; }
-        public static int CurrentDayToMonth { get; private set; }
-        public static int CurrentDayToYear { get; private set; }
-        public static int CurrentMonth { get; private set; }
-        public static int CurrentYear { get; private set; }
+        public int CurrentMinute { get; private set; }
+        public int CurrentHour { get; private set; }
+        public int CurrentDayToMonth { get; private set; }
+        public int CurrentDayToYear { get; private set; }
+        public int CurrentMonth { get; private set; }
+        public int CurrentYear { get; private set; }
 
         private void Start() {
             CurrentMinute = 0;
@@ -63,7 +62,7 @@ namespace Systems {
                     CurrentDayToMonth++;
                     CurrentDayToYear++;
                     CurrentHour = 0;
-                    onNewDay?.Invoke(CurrentDayToMonth);
+                    onNewDay?.Invoke(CurrentDayToMonth, CurrentDayToYear);
                     //Months
                     if (CurrentDayToMonth > 29){
                         CurrentMonth++;
