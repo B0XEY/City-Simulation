@@ -2,8 +2,8 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
-#if UNITY_EDITOR
     public class ShowOnlyAttribute : PropertyAttribute{ }
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ShowOnlyAttribute))]
     public class ShowOnlyDrawer : PropertyDrawer{
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label){

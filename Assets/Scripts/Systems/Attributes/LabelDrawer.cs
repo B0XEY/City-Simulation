@@ -2,13 +2,13 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
-#if UNITY_EDITOR
     public class LabelAttribute : PropertyAttribute{
         public readonly string CustomLabel;
         public LabelAttribute(string customLabel = ""){
             CustomLabel = customLabel;
         }
     }
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(LabelAttribute))]
     public class LabelDrawer : PropertyDrawer{
         private LabelAttribute LabelAttribute => (LabelAttribute)attribute;

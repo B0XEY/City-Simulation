@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 namespace Systems {
     public class TimeController : MonoBehaviour{
-        private readonly GUIStyle m_customStyle = new GUIStyle();
-        private float m_minTimer;
-        private float m_timer;
+        private readonly GUIStyle _customStyle = new GUIStyle();
+        private float _minTimer;
+        private float _timer;
         
         private const float HoursToSeconds = 3f;
         private enum SpeedMultiplier {
@@ -18,21 +18,15 @@ namespace Systems {
             Fast = 100
         }
         
-        //[Header("Events"), Line]
         [HideInInspector] public UnityEvent<int> onNewHour = new UnityEvent<int>();
         [HideInInspector] public UnityEvent<int, int> onNewDay = new UnityEvent<int, int>();
         [HideInInspector] public UnityEvent<int> onNewMonth = new UnityEvent<int>();
         [HideInInspector] public UnityEvent<int> onNewYear = new UnityEvent<int>();
-#if UNITY_EDITOR
+        
         [Header("Time Settings"), Line]
-        [SerializeField, ToggleButtons] 
-#endif
-        private SpeedMultiplier speedMultiplier = SpeedMultiplier.Normal;
+        [SerializeField, EnumButtons] private SpeedMultiplier speedMultiplier = SpeedMultiplier.Normal;
         [SerializeField] private int startYear = 0;
-#if UNITY_EDITOR
-        [ShowOnly, Label("Current Game Time: ")] 
-#endif
-        public string currentTime;
+        [ShowOnly, Label("Current Game Time: ")] public string currentTime;
         
         public int CurrentMinute { get; private set; }
         public int CurrentHour { get; private set; }
@@ -48,19 +42,19 @@ namespace Systems {
             CurrentDayToYear = 0;
             CurrentMonth = 0;
             CurrentYear = startYear;
-            m_timer = HoursToSeconds;
-            m_minTimer = HoursToSeconds / 60;
+            _timer = HoursToSeconds;
+            _minTimer = HoursToSeconds / 60;
         }
         private void Update(){
-            m_minTimer -= Time.deltaTime * (int)speedMultiplier;
+            _minTimer -= Time.deltaTime * (int)speedMultiplier;
             //Min
-            if (m_minTimer < 0){
+            if (_minTimer < 0){
                 CurrentMinute++;
-                m_minTimer = HoursToSeconds / 60;
+                _minTimer = HoursToSeconds / 60;
             }
-            m_timer -= Time.deltaTime * (int)speedMultiplier;
+            _timer -= Time.deltaTime * (int)speedMultiplier;
             //Hours
-            if (m_timer <= 0){
+            if (_timer <= 0){
                 CurrentHour++;
                 CurrentMinute = 0;
                 onNewHour?.Invoke(CurrentHour);
@@ -84,7 +78,7 @@ namespace Systems {
                         }
                     }
                 }
-                m_timer = HoursToSeconds;
+                _timer = HoursToSeconds;
             }
             //Set Current Time Data
             currentTime = $"{CurrentYear:0000}:{CurrentMonth:00}:{CurrentDayToMonth:00}:{CurrentHour:00}:{CurrentMinute:00} -  {CurrentDayToYear:000} ";
@@ -97,10 +91,10 @@ namespace Systems {
             onNewYear.RemoveAllListeners();
         }
         private void OnGUI() {
-            m_customStyle.fontSize = 30;
-            m_customStyle.normal.textColor = Color.white;
+            _customStyle.fontSize = 30;
+            _customStyle.normal.textColor = Color.white;
 
-            GUI.Label(new Rect(10, 10, 100, 20), currentTime, m_customStyle);
+            GUI.Label(new Rect(10, 10, 100, 20), currentTime, _customStyle);
         }
 
 

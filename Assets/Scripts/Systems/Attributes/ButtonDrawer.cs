@@ -4,7 +4,6 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Systems.Attributes {
-#if UNITY_EDITOR
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
     public class ButtonAttribute : PropertyAttribute{
         public readonly string CustomLabel;
@@ -12,8 +11,9 @@ namespace Systems.Attributes {
             CustomLabel = customLabel;
         }
     }
+#if UNITY_EDITOR
     [CustomEditor(typeof(MonoBehaviour), true)]
-    public class ButtonDrawer : UnityEditor.Editor {
+    public class ButtonDrawer : Editor {
         public override void OnInspectorGUI(){
             DrawDefaultInspector();
             MethodInfo[] methods = target.GetType().GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);

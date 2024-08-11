@@ -3,7 +3,6 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Systems.Attributes {
-#if UNITY_EDITOR
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
     public class OnChangedAttribute : PropertyAttribute{
         public readonly string MethodName;
@@ -11,6 +10,7 @@ namespace Systems.Attributes {
             MethodName = methodName;
         }
     }
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(OnChangedAttribute))]
     public class OnChangedDrawer : PropertyDrawer{
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label){

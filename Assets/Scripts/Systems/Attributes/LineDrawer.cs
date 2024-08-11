@@ -2,7 +2,6 @@
 using UnityEngine;
 
 namespace Systems.Attributes {
-#if UNITY_EDITOR
     public class LineAttribute : PropertyAttribute {
         public readonly float Thickness;
         public Color Color;
@@ -12,6 +11,7 @@ namespace Systems.Attributes {
             Color = new Color(r, g, b);
         }
     }
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(LineAttribute))]
     public class LineDrawer : DecoratorDrawer{
         private LineAttribute LineAttribute => (LineAttribute)attribute;
@@ -19,7 +19,7 @@ namespace Systems.Attributes {
             return LineAttribute.Thickness + EditorGUIUtility.standardVerticalSpacing;
         }
         public override void OnGUI(Rect position){
-            position.y += EditorGUIUtility.standardVerticalSpacing - 5;
+            position.y += EditorGUIUtility.standardVerticalSpacing - 3;
         
             Color savedColor = GUI.color;
             GUI.color = LineAttribute.Color;
